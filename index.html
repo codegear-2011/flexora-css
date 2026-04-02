@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexoraCSS — Build Faster, Flex Harder</title>
+    
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* --- DESIGN SYSTEM (Tailwind-style Tokens) --- */
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-400: #94a3b8;
+            --slate-600: #475569;
+            --slate-700: #334155;
+            --slate-900: #0f172a;
+            --radius-lg: 0.75rem;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--slate-50);
+            color: var(--slate-700);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3, h4 {
+            color: var(--slate-900);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #4f46e5, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* --- UI COMPONENTS --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--slate-200);
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-weight: 600;
+            border-radius: 0.5rem;
+            transition: all 0.2s;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card {
+            border: 1px solid var(--slate-200);
+            border-radius: var(--radius-lg);
+            background: white;
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* --- CODE PREVIEW WINDOW --- */
+        .code-window {
+            background: var(--slate-900);
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .code-header {
+            background: rgba(255,255,255,0.05);
+            padding: 12px 16px;
+            display: flex;
+            gap: 8px;
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot-r { background: #ff5f56; } .dot-y { background: #ffbd2e; } .dot-g { background: #27c93f; }
+        .code-body { padding: 24px; color: #e2e8f0; font-family: monospace; font-size: 0.9rem; position: relative; }
+
+        /* --- DOCS SIDEBAR STYLE --- */
+        .docs-sidebar .nav-link {
+            color: var(--slate-600);
+            font-weight: 500;
+            padding: 0.4rem 0;
+            font-size: 0.95rem;
+        }
+        .docs-sidebar .nav-link:hover, .docs-sidebar .nav-link.active {
+            color: var(--primary);
+        }
+
+        /* --- UTILITIES --- */
+        .avatar { width: 40px; height: 40px; border-radius: 50%; border: 2px solid #fff; margin-left: -12px; }
+        .avatar:first-child { margin-left: 0; }
+        .badge-soft { background: #e0e7ff; color: var(--primary); font-weight: 600; padding: 4px 12px; border-radius: 99px; font-size: 0.8rem; }
+        
+        .copy-btn {
+            position: absolute; top: 10px; right: 10px;
+            background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+            color: #fff; font-size: 11px; padding: 4px 8px; border-radius: 4px; cursor: pointer;
+        }
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s all ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg sticky-top py-3">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center fw-bold" href="#">
+                <div style="width:32px; height:32px; background:var(--primary); border-radius:8px;" class="me-2"></div>
+                   <img src="https://iili.io/BB9QA6Q.md.png" alt="Logo" style="height: 32px; width: auto;" class="me-2">
+                <span style="font-size: 1.5rem; letter-spacing: -0.04em;">Flexora<span class="text-primary">CSS</span></span>
+            </a>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-3 fw-medium">
+                    <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#showcase">Showcase</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#docs">Documentation</a></li>
+                    <li class="nav-item"><a class="btn btn-primary ms-lg-3" href="#">GitHub</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="py-5 overflow-hidden">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <span class="badge-soft mb-3 d-inline-block">New: Versio 1.0 is here</span>
+                    <h1 class="display-3 mb-4">Build beautiful UIs <br><span class="text-gradient">without leaving your HTML.</span></h1>
+                    <p class="lead text-secondary mb-5">FlexoraCSS is a modern, utility-first framework that combines the power of Flexbox with an elegant, designer-ready aesthetic.</p>
+                    <div class="d-flex gap-3">
+                        <a href="#docs" class="btn btn-primary btn-lg px-4">Start Building</a>
+                        <a href="#showcase" class="btn btn-outline-secondary btn-lg px-4 bg-white border">Live Demo</a>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="code-window">
+                        <div class="code-header">
+                            <div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div>
+                        </div>
+                        <div class="code-body">
+                            <button class="copy-btn">Copy</button>
+                            <code>
+<span style="color:#94a3b8">&lt;!-- Modern Card UI --&gt;</span><br>
+&lt;<span style="color:#ff79c6">div</span> <span style="color:#50fa7b">class</span>=<span style="color:#f1fa8c">"fx-card fx-flex-center"</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span style="color:#ff79c6">h3</span> <span style="color:#50fa7b">class</span>=<span style="color:#f1fa8c">"text-glow"</span>&gt;Hello Flexora&lt;/<span style="color:#ff79c6">h3</span>&gt;<br>
+&nbsp;&nbsp;&lt;<span style="color:#ff79c6">button</span> <span style="color:#50fa7b">class</span>=<span style="color:#f1fa8c">"btn-indigo"</span>&gt;Launch&lt;/<span style="color:#ff79c6">button</span>&gt;<br>
+&lt;/<span style="color:#ff79c6">div</span>&gt;
+                            </code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- FEATURES -->
+    <section id="features" class="py-5 bg-white border-top">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="h1">Engineered for speed.</h2>
+                <p class="text-secondary">Stop writing CSS from scratch. Use Flexora primitives instead.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 reveal">
+                    <div class="card h-100 p-4">
+                        <div class="mb-3 text-primary h3">⚡</div>
+                        <h4>Ultra Fast</h4>
+                        <p class="text-secondary small">Gzipped to just 10kb. No bloat, just pure performance utility classes.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="card h-100 p-4 border-primary shadow-sm" style="background: var(--slate-50);">
+                        <div class="mb-3 text-primary h3">🌈</div>
+                        <h4>Dynamic Theming</h4>
+                        <p class="text-secondary small">Powered by CSS Variables. Update your brand color in exactly one line of code.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal">
+                    <div class="card h-100 p-4">
+                        <div class="mb-3 text-primary h3">🛠️</div>
+                        <h4>Accessibility</h4>
+                        <p class="text-secondary small">WCAG-compliant contrast and keyboard navigation support out of the box.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SHOWCASE SECTION -->
+    <section id="showcase" class="py-5 bg-light">
+        <div class="container py-5">
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="card p-5 h-100 d-flex flex-column justify-content-center">
+                        <h3 class="mb-4">Component: User Group</h3>
+                        <div class="d-flex align-items-center gap-3">
+                            <div class="d-flex">
+                                <img src="https://i.pravatar.cc/100?u=1" class="avatar" alt="">
+                                <img src="https://i.pravatar.cc/100?u=2" class="avatar" alt="">
+                                <img src="https://i.pravatar.cc/100?u=3" class="avatar" alt="">
+                            </div>
+                            <span class="text-secondary small fw-medium">+240 active now</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card p-5 h-100">
+                        <h3 class="mb-4">Interactive Primitives</h3>
+                        <div class="d-flex flex-wrap gap-2">
+                            <button class="btn btn-primary">Primary Action</button>
+                            <button class="btn btn-light border px-4">Drafts</button>
+                            <span class="badge-soft">Success</span>
+                            <span class="badge-soft text-danger bg-danger-subtle">Error</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- DOCUMENTATION SECTION -->
+    <section id="docs" class="py-5 bg-white border-top">
+        <div class="container py-5">
+            <div class="row">
+                <!-- Sidebar -->
+                <div class="col-lg-3 docs-sidebar d-none d-lg-block">
+                    <h6 class="text-uppercase small fw-bold mb-3">Getting Started</h6>
+                    <nav class="nav flex-column mb-4">
+                        <a class="nav-link active" href="#">Quick Start</a>
+                        <a class="nav-link" href="#">Installation</a>
+                        <a class="nav-link" href="#">Configuration</a>
+                    </nav>
+                    <h6 class="text-uppercase small fw-bold mb-3">Layout</h6>
+                    <nav class="nav flex-column">
+                        <a class="nav-link" href="#">Flex Containers</a>
+                        <a class="nav-link" href="#">Grid Systems</a>
+                        <a class="nav-link" href="#">Padding & Margin</a>
+                    </nav>
+                </div>
+                <!-- Content -->
+                <div class="col-lg-9 ps-lg-5">
+                    <h2 class="display-5 mb-4">Quick Start Guide</h2>
+                    <p class="text-secondary lead mb-5">Learn how to get FlexoraCSS running in your project in less than 60 seconds.</p>
+                    
+                    <h4 class="mb-3">1. Via CDN</h4>
+                    <p class="text-secondary">Include the following tag in your header. No configuration required.</p>
+                    <div class="code-window mb-5">
+                        <div class="code-body">
+                            <code>&lt;link rel="stylesheet" href="https://cdn.flexoracss.com/v1.0/main.css"&gt;</code>
+                        </div>
+                    </div>
+
+                    <h4 class="mb-3">2. Via NPM</h4>
+                    <p class="text-secondary">For modern build tools like Vite or Webpack.</p>
+                    <div class="code-window mb-4">
+                        <div class="code-body">
+                            <code style="color:#50fa7b">npm install flexoracss</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-5 bg-slate-900 text-white text-center">
+        <div class="container">
+            <p class="mb-0 opacity-50 small">© 2024 FlexoraCSS Framework. Created for the modern web.</p>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Copy to Clipboard logic
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const code = btn.nextElementSibling.innerText;
+                navigator.clipboard.writeText(code);
+                btn.innerText = 'Copied!';
+                setTimeout(() => btn.innerText = 'Copy', 2000);
+            });
+        });
+
+        // Scroll Reveal Logic
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            reveals.forEach(el => {
+                var windowHeight = window.innerHeight;
+                var elementTop = el.getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    el.classList.add("active");
+                }
+            });
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Run on load
+    </script>
+</body>
+</html>
