@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexoraCSS| The Future of CSS</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts: Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Custom Tailwind-Skin CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+      
+:root {
+    --bs-primary: #4f46e5;       /* Tailwind Indigo 600 */
+    --bs-primary-rgb: 79, 70, 229;
+    --bs-body-bg: #f8fafc;       /* Slate 50 */
+    --bs-body-color: #334155;    /* Slate 700 */
+    --bs-font-sans-serif: 'Inter', sans-serif;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+}
+
+/* Typography Overrides */
+.display-3 {
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: #0f172a;
+}
+
+.text-gradient {
+    background: linear-gradient(90deg, #4f46e5, #9333ea);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tracking-tight { letter-spacing: -0.025em; }
+
+/* Professional Component Styling */
+.btn {
+    font-weight: 600;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-primary {
+    background-color: var(--bs-primary);
+    border: none;
+    box-shadow: 0 4px 6px -1px rgba(79, 70, 229, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px -3px rgba(79, 70, 229, 0.3);
+}
+
+/* The Code Window */
+.code-window {
+    background: #1e293b;
+    border-radius: 1rem;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.dot { width: 12px; height: 12px; border-radius: 50%; }
+.red { background: #ff5f56; }
+.yellow { background: #ffbd2e; }
+.green { background: #27c93f; }
+
+/* Cards & Features */
+.card {
+    border: 1px solid #e2e8f0;
+    border-radius: 1rem;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    border-color: #4f46e5;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.icon-square {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.75rem;
+    font-size: 1.5rem;
+}
+
+.bg-primary-soft { background-color: rgba(79, 70, 229, 0.1); }
+.bg-indigo-soft { background-color: #e0e7ff; }
+
+.logo-box {
+    width: 32px;
+    height: 32px;
+    background: var(--bs-primary);
+    border-radius: 8px;
+      }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light bg-white border-bottom">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <div class="logo-box me-2"></div> 
+                <span>Flexora <span class="text-primary">CSS</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto fw-medium">
+                    <li class="nav-item"><a class="nav-link px-3" href="#features">Features</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#docs">Docs</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="#components">Components</a></li>
+                    <li class="nav-item ms-lg-3"><a class="btn btn-primary shadow-sm" href="#">Download</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section py-5 py-md-5">
+        <div class="container py-5">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6">
+                    <div class="badge bg-indigo-soft text-primary mb-3 px-3 py-2 rounded-pill fw-bold">v1.0 is now live</div>
+                    <h1 class="display-3 fw-extra-bold mb-4 tracking-tight">
+                        Build your next idea <span class="text-gradient">faster than ever.</span>
+                    </h1>
+                  <h2>Imagine Big, Build Fast</h2>
+                    <p class="lead text-secondary mb-5">
+                        A lightweight, modern CSS framework built for developers who care about speed, semantics, and beautiful design by default.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <button class="btn btn-primary btn-lg px-4 py-3">Get Started Free</button>
+                        <button class="btn btn-outline-secondary btn-lg px-4 py-3 bg-white">View on GitHub</button>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="code-window shadow-2xl">
+                        <div class="code-header d-flex gap-2 p-3">
+                            <div class="dot red"></div><div class="dot yellow"></div><div class="dot green"></div>
+                        </div>
+                        <div class="code-body p-4 text-white">
+                            <pre><code><span class="text-muted">/* Install via NPM */</span>
+<span class="text-info">vhfj</span> FlexoraCSS
+
+<span class="text-muted">/* Modern usage */</span>
+<span class="text-warning">&lt;div</span> <span class="text-success">class</span>=<span class="text-info">"flex gap-4 p-8"</span><span class="text-warning">&gt;</span>
+  <span class="text-warning">&lt;button</span> <span class="text-success">class</span>=<span class="text-info">"btn-primary"</span><span class="text-warning">&gt;</span>
+    FLEXORA CSS
+                              
+  <span class="text-warning">&lt;/button&gt;</span>
+<span class="text-warning">&lt;/div&gt;</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="fw-bold h1">Everything you need</h2>
+                <p class="text-secondary">No bloat. Just the tools you need to ship products.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 p-4">
+                        <div class="icon-square bg-primary-soft text-primary mb-3"><i class="fa-regular fa-bolt"></i></div>
+                        <h4 class="fw-bold">Ultra Lightweight</h4>
+                        <p class="text-secondary">Only 12kb gzipped. Your users will thank you for the lightning-fast load times.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4">
+                        <div class="icon-square bg-primary-soft text-primary mb-3">🎨</div>
+                        <h4 class="fw-bold">Fully Customizable</h4>
+                        <p class="text-secondary">Built with CSS variables. Change your entire brand color palette in one line.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 p-4">
+                        <div class="icon-square bg-primary-soft text-primary mb-3">📱</div>
+                        <h4 class="fw-bold">Mobile First</h4>
+                        <p class="text-secondary">Responsive utilities that work on every screen size automatically.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
