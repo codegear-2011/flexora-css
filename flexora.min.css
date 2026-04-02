@@ -1,0 +1,1 @@
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:system-ui,sans-serif;background:#f5f7fa}:root{--fx-primary:#0d6efd;--fx-radius:8px}.fx-btn{padding:10px;border:none;border-radius:var(--fx-radius);background:var(--fx-primary);color:#fff}
