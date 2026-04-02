@@ -1,0 +1,241 @@
+
+/* =========================
+🌍 FLEXORA CSS v1.0
+Author: codegear pvt ltd
+========================= */
+
+/* =========================
+🔤 RESET
+========================= */
+
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+
+
+body {
+font-family: system-ui, sans-serif;
+background: #f5f7fa;
+}
+
+/* =========================
+🎨 VARIABLES
+========================= */
+:root {
+--fx-primary: #0d6efd;
+--fx-secondary: #6c757d;
+--fx-success: #198754;
+--fx-danger: #dc3545;
+--fx-warning: #ffc107;
+--fx-info: #0dcaf0;
+--fx-light: #f8f9fa;
+--fx-dark: #212529;
+
+--fx-radius: 8px;
+--fx-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* =========================
+📦 CONTAINER
+========================= */
+.fx-container {
+width: 90%;
+margin: auto;
+}
+
+@media (min-width: 768px) {
+.fx-container { width: 720px; }
+}
+@media (min-width: 1024px) {
+.fx-container { width: 960px; }
+}
+
+/* =========================
+🧱 GRID SYSTEM
+========================= */
+.fx-row {
+display: flex;
+flex-wrap: wrap;
+margin: -10px;
+}
+
+.fx-col {
+flex: 1;
+padding: 10px;
+}
+
+.fx-col-1 { width: 8.33%; }
+.fx-col-2 { width: 16.66%; }
+.fx-col-3 { width: 25%; }
+.fx-col-4 { width: 33.33%; }
+.fx-col-5 { width: 41.66%; }
+.fx-col-6 { width: 50%; }
+.fx-col-7 { width: 58.33%; }
+.fx-col-8 { width: 66.66%; }
+.fx-col-9 { width: 75%; }
+.fx-col-10 { width: 83.33%; }
+.fx-col-11 { width: 91.66%; }
+.fx-col-12 { width: 100%; }
+
+/* =========================
+🔘 BUTTONS
+========================= */
+.fx-btn {
+padding: 10px 16px;
+border: none;
+border-radius: var(--fx-radius);
+cursor: pointer;
+font-weight: bold;
+transition: 0.3s;
+color: white;
+}
+
+.fx-btn-primary { background: var(--fx-primary); }
+.fx-btn-success { background: var(--fx-success); }
+.fx-btn-danger { background: var(--fx-danger); }
+.fx-btn-warning { background: var(--fx-warning); color: black; }
+
+.fx-btn:hover {
+transform: translateY(-2px);
+box-shadow: var(--fx-shadow);
+}
+
+/* =========================
+🧾 CARD
+========================= */
+.fx-card {
+background: white;
+border-radius: var(--fx-radius);
+padding: 20px;
+box-shadow: var(--fx-shadow);
+transition: 0.3s;
+}
+
+.fx-card:hover {
+transform: translateY(-5px);
+}
+
+/* =========================
+🚨 ALERT
+========================= */
+.fx-alert {
+padding: 12px;
+border-radius: var(--fx-radius);
+margin: 10px 0;
+}
+
+.fx-alert-success { background: #d1e7dd; }
+.fx-alert-danger { background: #f8d7da; }
+.fx-alert-warning { background: #fff3cd; }
+
+/* =========================
+🧭 NAVBAR
+========================= */
+.fx-navbar {
+background: var(--fx-dark);
+padding: 10px;
+color: white;
+}
+
+.fx-navbar a {
+color: white;
+margin-right: 15px;
+text-decoration: none;
+}
+
+/* =========================
+📥 FORM
+========================= */
+.fx-input {
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: var(--fx-radius);
+}
+
+/* =========================
+📊 PROGRESS
+========================= */
+.fx-progress {
+background: #ddd;
+border-radius: var(--fx-radius);
+overflow: hidden;
+}
+
+.fx-progress-bar {
+height: 10px;
+background: var(--fx-primary);
+width: 50%;
+}
+
+/* =========================
+🧩 MODAL
+========================= */
+.fx-modal {
+position: fixed;
+inset: 0;
+background: rgba(0,0,0,0.6);
+display: none;
+justify-content: center;
+align-items: center;
+}
+
+.fx-modal-box {
+background: white;
+padding: 20px;
+border-radius: var(--fx-radius);
+width: 90%;
+max-width: 400px;
+}
+
+/* =========================
+🎨 UTILITIES
+========================= */
+.fx-text-center { text-align: center; }
+.fx-text-white { color: white; }
+
+.fx-bg-primary { background: var(--fx-primary); }
+.fx-bg-dark { background: var(--fx-dark); color: white; }
+
+.fx-mt-10 { margin-top: 10px; }
+.fx-mt-20 { margin-top: 20px; }
+
+.fx-p-10 { padding: 10px; }
+.fx-p-20 { padding: 20px; }
+
+/* =========================
+🌙 DARK MODE
+========================= */
+[data-theme="dark"] {
+background: #121212;
+color: white;
+}
+
+[data-theme="dark"] .fx-card {
+background: #1e1e1e;
+}
+
+/* =========================
+📱 RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+.fx-col-6,
+.fx-col-4,
+.fx-col-3 {
+width: 100%;
+}
+}
+
+/* =========================
+   🎯 EXTRA UTILITIES
+========================= */
+.fx-flex { display: flex; }
+.fx-center { justify-content: center; align-items: center; }
+
+.fx-rounded { border-radius: var(--fx-radius); }
+.fx-shadow { box-shadow: var(--fx-shadow); }
+
+.fx-hidden { display: none; }
+.fx-block { display: block; }
