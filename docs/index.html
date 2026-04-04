@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation — Read the Docs Style</title>
+    
+    <!-- External Engines -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    
+    <!-- Syntax Highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+    <style>
+        :root {
+            --rtd-sidebar-bg: #343131;
+            --rtd-sidebar-dark: #232121;
+            --rtd-primary: #e67e22; /* Iconic RTD Orange */
+            --rtd-link: #2980b9;
+            --rtd-text: #404040;
+            --sidebar-width: 300px;
+        }
+
+        /* --- LAYOUT --- */
+        body { font-family: 'Inter', sans-serif; color: var(--rtd-text); margin: 0; display: flex; background: #fcfcfc; }
+        
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--rtd-sidebar-bg);
+            height: 100vh;
+            position: fixed;
+            color: #ccc;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            margin-left: var(--sidebar-width);
+            flex: 1;
+            padding: 20px 40px;
+            max-width: 900px;
+        }
+
+        /* --- SIDEBAR COMPONENTS --- */
+        .sidebar-header { background: var(--rtd-sidebar-dark); padding: 20px; text-align: center; }
+        .sidebar-header a { color: white; font-weight: 700; text-decoration: none; font-size: 1.1rem; }
+        
+        .search-box { background: var(--rtd-sidebar-dark); padding: 10px 20px; }
+        .search-box input { 
+            width: 100%; background: rgba(255,255,255,0.1); border: 1px solid rgba(0,0,0,0.2); 
+            color: white; border-radius: 20px; padding: 5px 15px; font-size: 0.8rem;
+        }
+
+        .sidebar-nav { list-style: none; padding: 0; margin: 0; }
+        .nav-section-title { 
+            padding: 10px 20px; font-size: 0.75rem; font-weight: 700; 
+            text-transform: uppercase; color: #555; background: #efefef; 
+        }
+        .sidebar-nav a { 
+            display: block; padding: 10px 20px; color: #d9d9d9; 
+            text-decoration: none; font-size: 0.9rem; border-bottom: 1px solid rgba(0,0,0,0.1); 
+        }
+        .sidebar-nav a:hover { background: rgba(255,255,255,0.05); color: white; }
+        .sidebar-nav a.active { background: #444; color: white; border-left: 4px solid var(--rtd-primary); }
+
+        .version-footer { 
+            margin-top: auto; background: var(--rtd-sidebar-dark); 
+            padding: 10px 20px; font-size: 0.75rem; color: #888; 
+        }
+
+        /* --- BREADCRUMBS --- */
+        .breadcrumbs { font-size: 0.85rem; color: #999; margin-bottom: 30px; border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .breadcrumbs a { color: var(--rtd-link); text-decoration: none; }
+
+        /* --- MARKDOWN STYLING (The RTD Look) --- */
+        #content h1 { font-size: 2.2rem; color: var(--rtd-link); font-weight: 700; margin-bottom: 20px; }
+        #content h2 { font-size: 1.6rem; color: #333; margin-top: 40px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        #content p { line-height: 1.7; margin-bottom: 20px; }
+        
+        /* Tables */
+        #content table { width: 100%; border-collapse: collapse; margin: 20px 0; background: white; }
+        #content th, #content td { border: 1px solid #e1e4e5; padding: 12px; text-align: left; }
+        #content th { background: #f3f6f6; font-weight: 700; }
+
+        /* Admonitions (Notes/Warnings) */
+        .admonition { 
+            background: #e7f3fe; border-left: 6px solid #2196F3; 
+            padding: 15px; margin: 20px 0; border-radius: 4px; 
+        }
+        .admonition-title { font-weight: 800; color: #2196F3; font-size: 0.8rem; text-transform: uppercase; margin-bottom: 5px; }
+
+        /* Code Blocks */
+        pre { background: #f8f8f8 !important; border: 1px solid #e1e4e5 !important; border-radius: 4px !important; }
+
+        footer { margin-top: 50px; padding-top: 20px; border-top: 1px solid #eee; font-size: 0.8rem; color: #999; }
+
+        /* Mobile */
+        @media (max-width: 768px) {
+            .sidebar { display: none; }
+            .main-content { margin-left: 0; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <a href="#">FlexoraCSS</a>
+            <div style="font-size: 0.7rem; opacity: 0.5;">v1.0.4</div>
+        </div>
+        <div class="search-box">
+            <input type="text" placeholder="Search docs...">
+        </div>
+        
+        <nav id="sidebar-nav">
+            <div class="nav-section-title">Getting Started</div>
+            <a class="nav-link" data-md="index.md">Introduction</a>
+            <a class="nav-link" data-md="install.md">Installation</a>
+            
+            <div class="nav-section-title">Components</div>
+            <a class="nav-link" data-md="buttons.md">Buttons</a>
+            <a class="nav-link" data-md="cards.md">Cards</a>
+        </nav>
+
+        <div class="version-footer d-flex justify-content-between">
+            <span>v: latest</span>
+            <span>▼</span>
+        </div>
+    </aside>
+
+    <main class="main-content">
+        <nav class="breadcrumbs">
+            Docs » <span id="breadcrumb-category">Getting Started</span> » <b id="breadcrumb-page">Introduction</b>
+        </nav>
+
+        <div id="content">
+            <!-- Markdown renders here -->
+        </div>
+
+        <footer>
+            © Copyright 2024, Flexora Team. Built with FlexoraRTD Engine.
+        </footer>
+    </main>
+
+    <script>
+        const contentDiv = document.getElementById('content');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        // Custom Marked Renderer for RTD Admonitions
+        // Usage in MD: ::: note (your text) :::
+        const renderer = new marked.Renderer();
+        const originalCode = renderer.code.bind(renderer);
+        
+        async function loadMarkdown(fileName, linkElement) {
+            try {
+                const response = await fetch(fileName);
+                const text = await response.text();
+                
+                // Regex to convert ::: note ... ::: to RTD Admonition divs
+                const styledText = text.replace(/::: (\w+)\n([\s\S]*?)\n:::/g, (match, type, content) => {
+                    return `<div class="admonition"><div class="admonition-title">${type}</div>${marked.parse(content)}</div>`;
+                });
+
+                contentDiv.innerHTML = marked.parse(styledText);
+                
+                // Highlight syntax
+                Prism.highlightAll();
+
+                // Update Breadcrumbs
+                document.getElementById('breadcrumb-page').innerText = linkElement.innerText;
+                document.getElementById('breadcrumb-category').innerText = linkElement.previousElementSibling?.innerText || "Docs";
+
+                // Update UI active state
+                navLinks.forEach(l => l.classList.remove('active'));
+                linkElement.classList.add('active');
+
+            } catch (err) {
+                contentDiv.innerHTML = `<h1>404 Not Found</h1><p>Ensure you are running this on a <b>Local Server</b>.</p>`;
+            }
+        }
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                loadMarkdown(link.dataset.md, link);
+                window.location.hash = link.dataset.md;
+            });
+        });
+
+        // Initial Load
+        window.addEventListener('DOMContentLoaded', () => {
+            const currentHash = window.location.hash.replace('#', '') || 'index.md';
+            const activeLink = document.querySelector(`[data-md="${currentHash}"]`) || navLinks[0];
+            loadMarkdown(activeLink.dataset.md, activeLink);
+        });
+    </script>
+</body>
+  </html>
