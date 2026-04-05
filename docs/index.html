@@ -37,7 +37,7 @@
             background: var(--fx-sidebar); border-right: 1px solid var(--fx-border);
             display: flex; flex-direction: column; z-index: 100;
         }
-        .sidebar-header { padding: 24px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--fx-border); }
+        .sidebar-header { padding: 24px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--fx-border); justify-content: space-between; }
         .logo-sq { width: 32px; height: 32px; background: var(--fx-primary); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: 800; }
         
         .search-area { padding: 15px 20px; }
@@ -357,9 +357,11 @@ body.dark footer {
 
     <!-- SIDEBAR -->
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="logo-sq">F</div>
-            <span style="font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em;">Flexora<span style="color:var(--fx-primary)">CSS</span></span>
+        <div style="display:flex; align-items:center; gap:10px;">
+    <div class="logo-sq">F</div>
+    <span style="font-weight: 800; font-size: 1.2rem;">
+      Flexora<span style="color:var(--fx-primary)">CSS</span>
+    </span>
         </div>
         <!-- From Uiverse.io by Galahhad --> 
 <label class="theme-switch">
