@@ -239,3 +239,173 @@ width: 100%;
 
 .fx-hidden { display: none; }
 .fx-block { display: block; }
+
+
+/* =========================
+    FLEXORA CSS v2.0
+   Flexbox Added.
+========================= */
+
+
+/* =========================
+   🔤 RESET (Safe Base)
+========================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* =========================
+   📦 BASE FLEX
+========================= */
+
+.fx-flex { display: flex; }
+.fx-inline-flex { display: inline-flex; }
+
+
+/* =========================
+   🔁 FLEX DIRECTION
+========================= */
+
+.fx-row { flex-direction: row; }
+.fx-col { flex-direction: column; }
+
+.fx-row-reverse { flex-direction: row-reverse; }
+.fx-col-reverse { flex-direction: column-reverse; }
+
+
+/* =========================
+   🎯 JUSTIFY CONTENT (X axis)
+========================= */
+
+.fx-start   { justify-content: flex-start; }
+.fx-center  { justify-content: center; }
+.fx-end     { justify-content: flex-end; }
+
+.fx-between { justify-content: space-between; }
+.fx-around  { justify-content: space-around; }
+.fx-evenly  { justify-content: space-evenly; }
+
+
+/* =========================
+   📏 ALIGN ITEMS (Y axis)
+========================= */
+
+.fx-top     { align-items: flex-start; }
+.fx-middle  { align-items: center; }
+.fx-bottom  { align-items: flex-end; }
+.fx-stretch { align-items: stretch; }
+.fx-baseline { align-items: baseline; }
+
+
+/* =========================
+   🎯 ALIGN SELF (Individual)
+========================= */
+
+.fx-self-start   { align-self: flex-start; }
+.fx-self-center  { align-self: center; }
+.fx-self-end     { align-self: flex-end; }
+.fx-self-stretch { align-self: stretch; }
+
+
+/* =========================
+   🔄 FLEX WRAP
+========================= */
+
+.fx-wrap          { flex-wrap: wrap; }
+.fx-nowrap        { flex-wrap: nowrap; }
+.fx-wrap-reverse  { flex-wrap: wrap-reverse; }
+
+
+/* =========================
+   📐 GAP SYSTEM
+========================= */
+
+.fx-gap-5   { gap: 5px; }
+.fx-gap-10  { gap: 10px; }
+.fx-gap-15  { gap: 15px; }
+.fx-gap-20  { gap: 20px; }
+.fx-gap-25  { gap: 25px; }
+.fx-gap-30  { gap: 30px; }
+.fx-gap-40  { gap: 40px; }
+
+/* Axis specific */
+.fx-gap-x-10 { column-gap: 10px; }
+.fx-gap-y-10 { row-gap: 10px; }
+
+
+/* =========================
+   📦 FLEX GROW / SHRINK
+========================= */
+
+.fx-grow   { flex-grow: 1; }
+.fx-grow-0 { flex-grow: 0; }
+
+.fx-shrink   { flex-shrink: 1; }
+.fx-shrink-0 { flex-shrink: 0; }
+
+
+/* =========================
+   📏 FLEX BASIS
+========================= */
+
+.fx-basis-auto { flex-basis: auto; }
+.fx-basis-25   { flex-basis: 25%; }
+.fx-basis-50   { flex-basis: 50%; }
+.fx-basis-75   { flex-basis: 75%; }
+.fx-basis-100  { flex-basis: 100%; }
+
+
+/* =========================
+   🔥 QUICK UTILITIES
+========================= */
+
+/* Center everything */
+.fx-center-all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Space between + vertical center */
+.fx-between-middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Column center layout */
+.fx-col-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Full center column */
+.fx-col-center-all {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* =========================
+   📱 RESPONSIVE SYSTEM
+========================= */
+
+/* Tablet */
+@media (max-width: 768px) {
+  .md\:fx-col { flex-direction: column; }
+  .md\:fx-row { flex-direction: row; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+  .sm\:fx-col { flex-direction: column; }
+  .sm\:fx-center { justify-content: center; }
+                   }
