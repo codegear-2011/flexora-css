@@ -6,7 +6,7 @@ Flexora is a **CSS library**. This means it provides CSS classes to help you sty
   To use Flexora, you can either:
  - use one of the pre-compiled ```.css``` files
 
- - or install the **FLEXORA CLI** to make auto files(Under Development)</li>
+ - or install the **FLEXORA CLI** to make auto files(Under Development)
   
 ## Code requirements
 For Flexora to work correctly, you need to make your webpage **responsive**
