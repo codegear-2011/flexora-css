@@ -13,7 +13,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /getting-started
+      link: /overview
     - theme: alt
       text: view on github
       link: https://github.com/codegear-2011/flexora-css
