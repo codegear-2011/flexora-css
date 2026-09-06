@@ -4,19 +4,19 @@
  * https://github.com/<your-username>/artapa-css
  * License: MIT
  *
- * ব্যবহার (CDN):
+ * CDN usage:
  * <script src="https://cdn.jsdelivr.net/gh/<user>/artapa-css/dist/core.min.js"></script>
  *
- * সিনট্যাক্স: [namespace]:[property]-[value]
- * উদাহরণ: layout:flex, font:size-lg, border:radius-smooth
+ * Syntax: [namespace]:[property]-[value]
+ * Examples: layout:flex, font:size-lg, border:radius-smooth
  */
 (function (global) {
   "use strict";
 
   // =========================================================
   // 1. RULE DICTIONARY — namespace:property-value -> CSS declaration
-  //    এখান থেকেই পুরো ফ্রেমওয়ার্ক গ্রো করবে। নতুন namespace/value
-  //    যোগ করতে চাইলে শুধু এই অবজেক্টে entry যোগ করুন।
+  //    This is where the entire framework grows from. To add a new
+  //    namespace or value, just add an entry to this object.
   // =========================================================
   const RULES = {
     // ---- layout ----
@@ -66,17 +66,30 @@
     "border:color-slate": "border:1px solid #cbd5e1;",
     "border:color-none": "border:none;",
 
-    // ---- spacing (padding / margin) ----
+    // ---- spacing (padding / margin / gap) ----
+    "padding:none": "padding:0;",
     "padding:xs": "padding:4px;",
     "padding:sm": "padding:8px;",
     "padding:md": "padding:16px;",
     "padding:lg": "padding:24px;",
     "padding:xl": "padding:32px;",
+    "padding:2xl": "padding:48px;",
+    "padding:3xl": "padding:64px;",
+    "margin:none": "margin:0;",
     "margin:xs": "margin:4px;",
     "margin:sm": "margin:8px;",
     "margin:md": "margin:16px;",
     "margin:lg": "margin:24px;",
+    "margin:xl": "margin:32px;",
+    "margin:2xl": "margin:48px;",
+    "margin:3xl": "margin:64px;",
     "margin:auto": "margin:auto;",
+    "gap:xs": "gap:4px;",
+    "gap:sm": "gap:8px;",
+    "gap:md": "gap:16px;",
+    "gap:lg": "gap:24px;",
+    "gap:xl": "gap:32px;",
+    "gap:2xl": "gap:48px;",
 
     // ---- background ----
     "bg:color-primary": "background-color:#38bdf8;",
@@ -84,7 +97,7 @@
     "bg:color-white": "background-color:#ffffff;",
     "bg:color-transparent": "background-color:transparent;",
 
-    // ---- color palette (extended, 11 colors x 5 shades) ----
+    // ---- extended color palette (11 colors x 5 shades) ----
     // ---- slate ----
     "bg:color-slate-100": "background-color:#f1f5f9;",
     "bg:color-slate-300": "background-color:#cbd5e1;",
@@ -262,6 +275,44 @@
     "border:color-pink-700": "border-color:#be185d;",
     "border:color-pink-900": "border-color:#831843;",
 
+    // ---- grid ----
+    "grid:cols-1": "grid-template-columns:repeat(1, minmax(0, 1fr));",
+    "grid:cols-2": "grid-template-columns:repeat(2, minmax(0, 1fr));",
+    "grid:cols-3": "grid-template-columns:repeat(3, minmax(0, 1fr));",
+    "grid:cols-4": "grid-template-columns:repeat(4, minmax(0, 1fr));",
+    "grid:cols-5": "grid-template-columns:repeat(5, minmax(0, 1fr));",
+    "grid:cols-6": "grid-template-columns:repeat(6, minmax(0, 1fr));",
+    "grid:cols-7": "grid-template-columns:repeat(7, minmax(0, 1fr));",
+    "grid:cols-8": "grid-template-columns:repeat(8, minmax(0, 1fr));",
+    "grid:cols-9": "grid-template-columns:repeat(9, minmax(0, 1fr));",
+    "grid:cols-10": "grid-template-columns:repeat(10, minmax(0, 1fr));",
+    "grid:cols-11": "grid-template-columns:repeat(11, minmax(0, 1fr));",
+    "grid:cols-12": "grid-template-columns:repeat(12, minmax(0, 1fr));",
+    "grid:rows-1": "grid-template-rows:repeat(1, minmax(0, 1fr));",
+    "grid:rows-2": "grid-template-rows:repeat(2, minmax(0, 1fr));",
+    "grid:rows-3": "grid-template-rows:repeat(3, minmax(0, 1fr));",
+    "grid:rows-4": "grid-template-rows:repeat(4, minmax(0, 1fr));",
+    "grid:rows-5": "grid-template-rows:repeat(5, minmax(0, 1fr));",
+    "grid:rows-6": "grid-template-rows:repeat(6, minmax(0, 1fr));",
+    "grid:col-span-1": "grid-column:span 1 / span 1;",
+    "grid:col-span-2": "grid-column:span 2 / span 2;",
+    "grid:col-span-3": "grid-column:span 3 / span 3;",
+    "grid:col-span-4": "grid-column:span 4 / span 4;",
+    "grid:col-span-5": "grid-column:span 5 / span 5;",
+    "grid:col-span-6": "grid-column:span 6 / span 6;",
+    "grid:col-span-7": "grid-column:span 7 / span 7;",
+    "grid:col-span-8": "grid-column:span 8 / span 8;",
+    "grid:col-span-9": "grid-column:span 9 / span 9;",
+    "grid:col-span-10": "grid-column:span 10 / span 10;",
+    "grid:col-span-11": "grid-column:span 11 / span 11;",
+    "grid:col-span-12": "grid-column:span 12 / span 12;",
+    "grid:row-span-1": "grid-row:span 1 / span 1;",
+    "grid:row-span-2": "grid-row:span 2 / span 2;",
+    "grid:row-span-3": "grid-row:span 3 / span 3;",
+    "grid:row-span-4": "grid-row:span 4 / span 4;",
+    "grid:row-span-5": "grid-row:span 5 / span 5;",
+    "grid:row-span-6": "grid-row:span 6 / span 6;",
+
     // ---- sizing ----
     "size:w-full": "width:100%;",
     "size:h-full": "height:100%;",
@@ -270,9 +321,9 @@
 
   // =========================================================
   // 1b. BREAKPOINTS — responsive prefix support
-  //     সিনট্যাক্স: [breakpoint]:[namespace]:[value]
-  //     উদাহরণ: md:layout:flex, lg:font:size-xl
-  //     min-width মিডিয়া কোয়েরি ব্যবহার করা হয় (mobile-first, Tailwind-এর মতোই)
+  //     Syntax: [breakpoint]:[namespace]:[value]
+  //     Examples: md:layout:flex, lg:font:size-xl
+  //     Uses min-width media queries (mobile-first, same convention as Tailwind)
   // =========================================================
   const BREAKPOINTS = {
     sm: 640,
@@ -283,10 +334,10 @@
 
   // =========================================================
   // 1c. STATES — hover/focus/active pseudo-class support
-  //     সিনট্যাক্স: [state]:[namespace]:[value]
-  //     উদাহরণ: hover:bg:color-primary, focus:border:color-slate
-  //     breakpoint prefix-এর সাথেও কম্বাইন করা যায় (JS runtime-এ),
-  //     যেমন: md:hover:bg:color-primary
+  //     Syntax: [state]:[namespace]:[value]
+  //     Examples: hover:bg:color-primary, focus:border:color-slate
+  //     Can be combined with a breakpoint prefix in the JS runtime,
+  //     e.g. md:hover:bg:color-primary
   // =========================================================
   const STATES = {
     hover: ":hover",
@@ -294,14 +345,59 @@
     active: ":active",
   };
 
-  // ক্লাস স্ট্রিং পার্স করে { breakpoint, state, baseClass } রিটার্ন করে।
-  // breakpoint ও state prefix যেকোনো অর্ডারে থাকতে পারে, একটাই বা দুটোই বা কোনোটাই না।
+  // =========================================================
+  // 1d. DARK MODE
+  //     Syntax: dark:[namespace]:[value]
+  //     Example: dark:bg:color-slate-900, dark:text:color-white
+  //     Two strategies:
+  //       - "class" (default): generates ".dark .dark\:bg\:color-slate-900{...}"
+  //         Toggle by adding/removing a "dark" class on <html> or <body>.
+  //       - "media": generates "@media (prefers-color-scheme:dark){...}"
+  //         Automatically follows the OS/browser color scheme.
+  //     Change strategy at runtime with ARTAPA.setDarkMode({ strategy: "media" })
+  //     or override the ancestor selector with { selector: ".theme-dark" }.
+  // =========================================================
+  const DARK_SELECTOR_DEFAULT = ".dark";
+  const DARK = {
+    strategy: "class", // "class" | "media"
+    selector: DARK_SELECTOR_DEFAULT,
+  };
+
+  // =========================================================
+  // 1e. DYNAMIC VALUE MATCHERS
+  //     Lets padding / margin / gap accept an arbitrary numeric value
+  //     (e.g. padding:24px, margin:2rem, gap:1.5em) instead of only the
+  //     named scale (xs/sm/md/lg/xl/2xl/3xl). Checked only when the class
+  //     isn't already a literal key in RULES.
+  //     Note: arbitrary values like this only work in the JS runtime —
+  //     the static artapa.css build can't enumerate infinite numbers, so
+  //     it only ships the named scale.
+  // =========================================================
+  const DYNAMIC_MATCHERS = [
+    { property: "padding", regex: /^padding:(\d+(?:\.\d+)?)(px|rem|em|%)$/ },
+    { property: "margin", regex: /^margin:(\d+(?:\.\d+)?)(px|rem|em|%)$/ },
+    { property: "gap", regex: /^gap:(\d+(?:\.\d+)?)(px|rem|em|%)$/ },
+  ];
+
+  function tryDynamicRule(baseClass) {
+    for (const matcher of DYNAMIC_MATCHERS) {
+      const m = baseClass.match(matcher.regex);
+      if (m) return `${matcher.property}:${m[1]}${m[2]};`;
+    }
+    return null;
+  }
+
+  // Parses a class string into { breakpoint, state, dark, baseClass }.
+  // Prefixes (breakpoint / state / "dark") can appear in any order, any
+  // combination, or not at all.
   function parseClass(cls) {
     const parts = cls.split(":");
     let breakpoint = null;
     let state = null;
+    let dark = false;
     let idx = 0;
-    // অন্তত namespace:value বাকি রাখার জন্য parts.length - idx >= 2 শর্ত রাখা হলো
+    // Stop once only "namespace:value" (2 parts) remains, so we never
+    // consume the actual rule key while looking for prefixes.
     while (idx < parts.length - 2) {
       const piece = parts[idx];
       if (!breakpoint && BREAKPOINTS.hasOwnProperty(piece)) {
@@ -314,16 +410,21 @@
         idx++;
         continue;
       }
+      if (!dark && piece === "dark") {
+        dark = true;
+        idx++;
+        continue;
+      }
       break;
     }
-    return { breakpoint, state, baseClass: parts.slice(idx).join(":") };
+    return { breakpoint, state, dark, baseClass: parts.slice(idx).join(":") };
   }
 
   // =========================================================
   // 2. STATE
   // =========================================================
   const injected = new Set();
-  const unknown = new Set(); // অজানা / হ্যালুসিনেটেড ক্লাস ট্র্যাক করার জন্য
+  const unknown = new Set(); // tracks unknown / hallucinated class names
   let styleEl = null;
   let observer = null;
 
@@ -331,7 +432,7 @@
     return "." + cls.replace(/[:]/g, "\\$&");
   }
 
-  // ---- সহজ Levenshtein distance, "did you mean...?" সাজেশনের জন্য ----
+  // ---- simple Levenshtein distance, used for "did you mean...?" suggestions ----
   function levenshtein(a, b) {
     const m = a.length, n = b.length;
     const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
@@ -347,7 +448,7 @@
     return dp[m][n];
   }
 
-  // baseClass-এর কাছাকাছি (edit distance <=3) সবচেয়ে মিল থাকা ভ্যালিড ক্লাস খুঁজে বের করে
+  // Finds the closest known class to baseClass (edit distance <= 3)
   function suggestClosest(baseClass) {
     let best = null;
     let bestDist = Infinity;
@@ -361,9 +462,9 @@
     return bestDist <= 3 ? best : null;
   }
 
-  // baseClass থেকে namespace (প্রথম ":" এর আগের অংশ) বের করা, এবং সেই namespace
-  // ঠিক আছে কিনা যাচাই করা — এতে error message-এ নির্দিষ্ট করে বলা যায়
-  // "namespace ভুল" নাকি "namespace ঠিক কিন্তু value ভুল"।
+  // Returns the set of valid namespaces (the part before the first ":")
+  // so the warning message can distinguish between "namespace is wrong"
+  // and "namespace is fine, but the value isn't".
   function knownNamespaces() {
     const set = new Set();
     for (const key of Object.keys(RULES)) set.add(key.split(":")[0]);
@@ -381,8 +482,10 @@
     return styleEl;
   }
 
-  // অজানা ক্লাসের জন্য স্পষ্ট, কার্যকর warning — namespace ভুল নাকি value ভুল
-  // সেটা আলাদা করে বলে, আর কাছাকাছি মিল থাকলে "did you mean...?" সাজেশন দেয়।
+  // Builds a clear, actionable console warning for an unrecognized class.
+  // It distinguishes between an invalid namespace and a valid namespace
+  // with an invalid value, and offers a "did you mean...?" suggestion
+  // when a close match exists (helpful for typos and AI hallucinations).
   function warnUnknownClass(fullClass, baseClass) {
     const hasNamespace = baseClass.includes(":");
     const ns = hasNamespace ? baseClass.split(":")[0] : null;
@@ -391,37 +494,56 @@
 
     let reason;
     if (!hasNamespace) {
-      reason = `এটা "namespace:value" ফরম্যাটে নেই (":" নেই)। ব্যবহারযোগ্য namespace: ${Array.from(validNamespaces).join(", ")}`;
+      reason = `it isn't in "namespace:value" format (no ":" found). Valid namespaces: ${Array.from(validNamespaces).join(", ")}`;
     } else if (!validNamespaces.has(ns)) {
-      reason = `namespace "${ns}:" ARTAPA CSS-এ নেই। ব্যবহারযোগ্য namespace: ${Array.from(validNamespaces).join(", ")}`;
+      reason = `namespace "${ns}:" doesn't exist in ARTAPA CSS. Valid namespaces: ${Array.from(validNamespaces).join(", ")}`;
     } else {
-      reason = `namespace "${ns}:" ঠিক আছে, কিন্তু value/property অংশ ভুল।`;
+      reason = `namespace "${ns}:" is valid, but the value/property part isn't recognized.`;
     }
 
-    let msg = `[ARTAPA CSS] ⚠ অজানা ক্লাস "${fullClass}"\n  কারণ: ${reason}`;
-    if (suggestion) msg += `\n  আপনি কি এটা বোঝাতে চেয়েছেন? → "${suggestion}"`;
-    msg += `\n  সব ভ্যালিড namespace:value-এর তালিকা: ai-rules.md ফাইলে দেখুন।`;
+    let msg = `[ARTAPA CSS] ⚠ Unknown class "${fullClass}"\n  Reason: ${reason}`;
+    if (suggestion) msg += `\n  Did you mean "${suggestion}"?`;
+    msg += `\n  See ai-rules.md for the full list of valid namespace:value combinations.`;
 
     console.warn(msg);
   }
 
+  // Pure function: given a full class string, returns the CSS rule text
+  // (including any @media wrapper) or null if the class is unrecognized.
+  // No DOM access — this is the single source of truth for "what CSS does
+  // this class produce," reused by both the browser runtime (injectRule)
+  // and the Node.js purge tool (purge.js), so their output can never diverge.
+  function buildRuleCSS(cls) {
+    const { breakpoint, state, dark, baseClass } = parseClass(cls);
+    const decl = RULES[baseClass] || tryDynamicRule(baseClass);
+    if (!decl) return null;
+
+    const pseudo = state ? STATES[state] : "";
+    let selector = `${cssEscape(cls)}${pseudo}`;
+    if (dark && DARK.strategy === "class") {
+      selector = `${DARK.selector} ${selector}`;
+    }
+    const mediaConditions = [];
+    if (breakpoint) mediaConditions.push(`(min-width:${BREAKPOINTS[breakpoint]}px)`);
+    if (dark && DARK.strategy === "media") mediaConditions.push("(prefers-color-scheme:dark)");
+
+    const baseRule = `${selector}{${decl}}`;
+    return mediaConditions.length
+      ? `@media ${mediaConditions.join(" and ")}{${baseRule}}`
+      : baseRule;
+  }
+
   function injectRule(cls) {
     if (injected.has(cls)) return;
-    const { breakpoint, state, baseClass } = parseClass(cls);
-    const decl = RULES[baseClass];
-    if (!decl) {
+    const css = buildRuleCSS(cls);
+    if (!css) {
       if (!unknown.has(cls)) {
         unknown.add(cls);
-        warnUnknownClass(cls, baseClass);
+        warnUnknownClass(cls, parseClass(cls).baseClass);
       }
       return;
     }
-    const pseudo = state ? STATES[state] : "";
-    const rule = `${cssEscape(cls)}${pseudo}{${decl}}`;
-    const finalCSS = breakpoint
-      ? `@media (min-width:${BREAKPOINTS[breakpoint]}px){${rule}}\n`
-      : `${rule}\n`;
-    ensureStyleTag().appendChild(document.createTextNode(finalCSS));
+    ensureStyleTag().appendChild(document.createTextNode(css + "\n"));
     injected.add(cls);
   }
 
@@ -435,6 +557,42 @@
   }
 
   // =========================================================
+  // 2b. DESIGN TOKEN BRIDGE
+  //     Exposes color / spacing / radius RULES values as CSS custom
+  //     properties (e.g. --artapa-bg-color-blue-500) on <html>, so raw
+  //     CSS (outside ARTAPA classes) can reuse the exact same values —
+  //     and stays in sync automatically if a value changes in RULES.
+  //     Keep tokenEligible()/extractTokenValue() in sync with build.js,
+  //     which duplicates this same logic for the static CSS build.
+  // =========================================================
+  function tokenEligible(key) {
+    const [ns, sub = ""] = key.split(":");
+    if (ns === "bg" && sub.startsWith("color")) return true;
+    if (ns === "text" && sub.startsWith("color")) return true;
+    if (ns === "border" && (sub.startsWith("color") || sub.startsWith("radius"))) return true;
+    if (ns === "padding" || ns === "margin" || ns === "gap") return true;
+    return false;
+  }
+
+  function extractTokenValue(decl) {
+    const hexMatch = decl.match(/#[0-9a-fA-F]{3,8}/);
+    if (hexMatch) return hexMatch[0];
+    const valueMatch = decl.match(/:\s*([^;]+);/);
+    return valueMatch ? valueMatch[1].trim() : null;
+  }
+
+  function applyDesignTokens() {
+    if (typeof document === "undefined" || !document.documentElement) return;
+    const root = document.documentElement;
+    for (const key of Object.keys(RULES)) {
+      if (!tokenEligible(key)) continue;
+      const value = extractTokenValue(RULES[key]);
+      if (!value) continue;
+      root.style.setProperty(`--artapa-${key.replace(/:/g, "-")}`, value);
+    }
+  }
+
+  // =========================================================
   // 3. PUBLIC API — window.ARTAPA
   // =========================================================
   const ARTAPA = {
@@ -443,29 +601,53 @@
     breakpoints: BREAKPOINTS,
     states: STATES,
 
-    // নতুন rule রানটাইমে যোগ করার জন্য (প্লাগইন/থিম extension)
+    // Add new rules at runtime (for plugins or theme extensions)
     extend(customRules) {
       Object.assign(RULES, customRules);
     },
 
-    // নতুন breakpoint যোগ/override করার জন্য, যেমন: ARTAPA.setBreakpoint("xs", 480)
+    // Add or override a breakpoint at runtime, e.g. ARTAPA.setBreakpoint("xs", 480)
     setBreakpoint(name, minWidthPx) {
       BREAKPOINTS[name] = minWidthPx;
     },
 
-    // নতুন state/pseudo-class যোগ করার জন্য, যেমন: ARTAPA.setState("disabled", ":disabled")
+    // Add or override a state/pseudo-class, e.g. ARTAPA.setState("disabled", ":disabled")
     setState(name, pseudoSelector) {
       STATES[name] = pseudoSelector;
     },
 
-    // ম্যানুয়ালি একটা root স্ক্যান করা
+    // Configure dark mode strategy at runtime.
+    // ARTAPA.setDarkMode({ strategy: "media" })                 -> follow OS color scheme
+    // ARTAPA.setDarkMode({ strategy: "class", selector: ".x" }) -> custom toggle class
+    setDarkMode(options) {
+      if (options.strategy) DARK.strategy = options.strategy;
+      if (options.selector) DARK.selector = options.selector;
+    },
+    dark: DARK,
+
+    // Re-applies all color/spacing/radius RULES values as CSS custom
+    // properties on <html> (e.g. --artapa-bg-color-blue-500). Runs
+    // automatically on init(); call again after extend() if you added
+    // new color/spacing/radius rules and want them exposed as tokens too.
+    applyDesignTokens,
+
+    // Reads a single token's current value, e.g. ARTAPA.getToken("bg:color-blue-500") -> "#3b82f6"
+    getToken(key) {
+      if (typeof document === "undefined") return null;
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue(`--artapa-${key.replace(/:/g, "-")}`)
+        .trim() || null;
+    },
+
+    // Manually scan a specific subtree
     scan(root) {
       scanTree(root || document.body);
     },
 
-    // ইঞ্জিন চালু করা — DOM observe করে নতুন এলিমেন্ট/ক্লাস অটো-ডিটেক্ট করবে
+    // Starts the engine — observes the DOM and auto-detects new elements/classes
     init(root) {
       const target = root || document.body;
+      applyDesignTokens();
       scanTree(target);
       if (observer) observer.disconnect();
       observer = new MutationObserver((mutations) => {
@@ -492,7 +674,7 @@
       if (observer) observer.disconnect();
     },
 
-    // বর্তমান জেনারেটেড CSS টেক্সট হিসেবে বের করা (ডিবাগ/এক্সপোর্টের জন্য)
+    // Returns the CSS generated so far, as text (useful for debugging/export)
     getGeneratedCSS() {
       return ensureStyleTag().textContent;
     },
@@ -500,11 +682,27 @@
     getUnknownClasses() {
       return Array.from(unknown);
     },
+
+    // Internal — exposed for the Node.js purge tool (purge.js) so it can
+    // reuse the exact same class-parsing and CSS-generation logic as the
+    // browser runtime. Not a stable public API; may change between versions.
+    _internal: {
+      RULES,
+      BREAKPOINTS,
+      STATES,
+      DARK,
+      parseClass,
+      tryDynamicRule,
+      buildRuleCSS,
+      tokenEligible,
+      extractTokenValue,
+    },
   };
 
   global.ARTAPA = ARTAPA;
 
-  // অটো-ইনিট: script ট্যাগে data-auto="false" না দিলে DOM ready হওয়ামাত্র চালু হবে
+  // Auto-init: starts as soon as the DOM is ready, unless the script tag
+  // has data-auto="false".
   function autoInit() {
     const scriptTag = document.currentScript || document.querySelector('script[src*="core"]');
     if (scriptTag && scriptTag.dataset && scriptTag.dataset.auto === "false") return;

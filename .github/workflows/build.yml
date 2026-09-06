@@ -1,0 +1,69 @@
+name: Build ARTAPA CSS
+
+# src/core.js পরিবর্তন করে push করলে এটা চলবে।
+# বিল্ড আউটপুট (core.js, core.min.js, artapa.css, artapa.min.css) কোনো
+# ফোল্ডারের ভেতরে না রেখে সরাসরি রিপোর রুটে কমিট হয়। রুটের ফাইল পরিবর্তনে
+# আবার ট্রিগার হওয়া (infinite loop) ঠেকাতে শুধু src/ ও build.js পাথ
+# ট্র্যাক করা হচ্ছে, আউটপুট ফাইলগুলো না।
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core.js"
+      - "build.js"
+  workflow_dispatch: # ম্যানুয়ালি "Run workflow" বাটন দিয়েও চালানো যাবে
+
+permissions:
+  contents: write # রুটে commit + push করার জন্য প্রয়োজন
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install terser (JS minifier)
+        run: npm install --no-save terser
+
+      - name: Build static CSS (writes to dist/ internally)
+        run: node build.js
+
+      - name: Move build output from dist/ to repo root
+        run: |
+          mv dist/artapa.css ./artapa.css
+          mv dist/artapa.min.css ./artapa.min.css
+          rmdir dist || true
+
+      - name: Copy unminified core.js to repo root
+        run: cp src/core.js ./core.js
+
+      - name: Minify core.js -> core.min.js (repo root)
+        run: npx terser src/core.js -c -m --comments '/^!/' -o core.min.js
+
+      - name: Report generated file sizes
+        run: |
+          echo "### 📦 ARTAPA CSS build output" >> $GITHUB_STEP_SUMMARY
+          echo "| ফাইল | সাইজ |" >> $GITHUB_STEP_SUMMARY
+          echo "|---|---|" >> $GITHUB_STEP_SUMMARY
+          for f in core.js core.min.js artapa.css artapa.min.css; do
+            size=$(wc -c < "$f")
+            echo "| $f | ${size} bytes |" >> $GITHUB_STEP_SUMMARY
+          done
+
+      - name: Commit updated root files
+        run: |
+          git config user.name "artapa-bot"
+          git config user.email "actions@github.com"
+          git add core.js core.min.js artapa.css artapa.min.css
+          if git diff --cached --quiet; then
+            echo "কোনো পরিবর্তন নেই, কমিট স্কিপ করা হলো।"
+          else
+            git commit -m "chore: rebuild output files [auto]"
+            git push
+          fi

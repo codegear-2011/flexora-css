@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<title>ARTAPA CSS — টেস্ট পেজ</title>
+
+<!-- লোকাল টেস্টের জন্য রিলেটিভ পাথ। GitHub-এ পুশ করার পর jsDelivr CDN লিংক দিয়ে বদলে দিন:
+     <script src="https://cdn.jsdelivr.net/gh/<username>/artapa-css@v0.1.0-beta.1/dist/core.min.js"></script> -->
+<script src="./dist/core.min.js"></script>
+
+<style>
+  /* এই স্টাইলগুলো শুধু টেস্ট পেজের UI-এর জন্য, ARTAPA-এর অংশ না */
+  body { font-family: system-ui, sans-serif; background:#f8fafc; margin:0; }
+  .test-wrapper { max-width: 900px; margin: 0 auto; padding: 24px; }
+  .test-header { margin-bottom: 24px; }
+  .test-header h1 { margin: 0 0 4px; font-size: 22px; color:#0f172a; }
+  .test-header p { margin: 0; color:#64748b; font-size: 14px; }
+  .status-box { background:#0f172a; color:#4ade80; font-family: monospace; font-size: 13px;
+    padding: 14px 18px; border-radius: 8px; margin-bottom: 24px; white-space: pre-wrap; }
+  .status-box.fail { color:#f87171; }
+  .section-title { font-size: 13px; text-transform: uppercase; letter-spacing: .05em;
+    color:#94a3b8; margin: 28px 0 10px; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="test-wrapper">
+  <div class="test-header">
+    <h1>ARTAPA CSS — লাইভ টেস্ট পেজ</h1>
+    <p>এই পেজ লোড হওয়ার সাথে সাথে ইঞ্জিন নিচের সব এলিমেন্ট স্ক্যান করে CSS জেনারেট করবে। রেজাল্ট নিচে দেখুন।</p>
+  </div>
+
+  <div id="status" class="status-box">ইঞ্জিন চেক করা হচ্ছে…</div>
+
+  <div class="section-title">1. Layout / Align / Justify</div>
+  <div class="layout:flex align:center justify:between padding:md border:radius-smooth border:color-slate bg:color-slate-100">
+    <span class="font:weight-semibold">বাম দিকে</span>
+    <span class="font:weight-semibold">ডান দিকে</span>
+  </div>
+
+  <div class="section-title">2. Extended color palette (bg / text / border)</div>
+  <div class="layout:flex layout:wrap">
+    <div class="bg:color-blue-500 text:color-white padding:sm margin:xs border:radius-sm">blue-500</div>
+    <div class="bg:color-red-500 text:color-white padding:sm margin:xs border:radius-sm">red-500</div>
+    <div class="bg:color-green-500 text:color-white padding:sm margin:xs border:radius-sm">green-500</div>
+    <div class="bg:color-purple-500 text:color-white padding:sm margin:xs border:radius-sm">purple-500</div>
+    <div class="bg:color-amber-300 text:color-black padding:sm margin:xs border:radius-sm">amber-300</div>
+  </div>
+
+  <div class="section-title">3. Hover / Focus states (মাউস দিয়ে হভার করে দেখুন)</div>
+  <button class="bg:color-blue-500 hover:bg:color-blue-700 text:color-white padding:md border:radius-smooth border:color-none" style="cursor:pointer">
+    এখানে হভার করুন
+  </button>
+  <input class="border:color-slate focus:border:color-blue-500 padding:sm border:radius-sm" type="text" placeholder="ফোকাস করে দেখুন" style="margin-left:12px">
+
+  <div class="section-title">4. Responsive breakpoint (ব্রাউজার সাইজ ছোট-বড় করে দেখুন)</div>
+  <div class="layout:col md:layout:row justify:between bg:color-slate-100 padding:md border:radius-smooth">
+    <div class="bg:color-indigo-100 padding:sm margin:xs border:radius-sm">Box 1</div>
+    <div class="bg:color-indigo-100 padding:sm margin:xs border:radius-sm">Box 2</div>
+    <div class="bg:color-indigo-100 padding:sm margin:xs border:radius-sm">Box 3</div>
+  </div>
+  <p style="color:#64748b;font-size:13px">৭৬৮px-এর নিচে column, উপরে row হয়ে যাবে (এই ব্রাউজার উইন্ডো resize করে চেক করুন)।</p>
+
+  <div class="section-title">5. Invalid class ইচ্ছাকৃতভাবে (হ্যালুসিনেশন ক্যাচ টেস্ট)</div>
+  <div class="pad-2 rounded-lg text-sm bg:color-notarealcolor-500 padding:sm border:color-slate">
+    এই এলিমেন্টে কিছু ভুল ক্লাস আছে ইচ্ছাকৃতভাবে — উপরের স্ট্যাটাস বক্সে "Unknown classes" এ দেখা উচিত।
+  </div>
+
+  <div class="section-title">Debug output</div>
+  <pre id="debugOutput" style="background:#fff;border:1px solid #e2e8f0;border-radius:8px;padding:14px;font-size:12px;overflow:auto;max-height:300px;"></pre>
+</div>
+
+<script>
+  window.addEventListener("load", () => {
+    const statusEl = document.getElementById("status");
+    const debugEl = document.getElementById("debugOutput");
+
+    if (typeof ARTAPA === "undefined") {
+      statusEl.textContent = "❌ FAIL: window.ARTAPA পাওয়া যায়নি। core.min.js ঠিকমতো লোড হয়নি — পাথ চেক করুন।";
+      statusEl.classList.add("fail");
+      return;
+    }
+
+    // ইঞ্জিন লোড হওয়ার সামান্য পরে চেক করা, যাতে সব ইনজেকশন শেষ হয়
+    setTimeout(() => {
+      const unknown = ARTAPA.getUnknownClasses();
+      const cssText = ARTAPA.getGeneratedCSS();
+      const ruleCount = cssText.split("\n").filter(l => l.trim().length > 0).length;
+
+      const checks = [
+        ["ARTAPA object লোড হয়েছে", typeof ARTAPA === "object"],
+        ["Version পাওয়া গেছে", !!ARTAPA.version],
+        ["কমপক্ষে ১০টা CSS rule জেনারেট হয়েছে", ruleCount >= 10],
+        ["Unknown class ঠিকমতো ধরা পড়েছে (pad-2, rounded-lg, text-sm, bg:color-notarealcolor-500)", unknown.length >= 3],
+        ["Hover selector জেনারেট হয়েছে", cssText.includes(":hover")],
+        ["Focus selector জেনারেট হয়েছে", cssText.includes(":focus")],
+        ["Media query (breakpoint) জেনারেট হয়েছে", cssText.includes("@media")],
+      ];
+
+      const allPass = checks.every(c => c[1]);
+      statusEl.classList.toggle("fail", !allPass);
+      statusEl.textContent =
+        (allPass ? "✅ সব টেস্ট পাস করেছে!\n\n" : "⚠️ কিছু টেস্ট ফেল করেছে:\n\n") +
+        checks.map(c => `${c[1] ? "✅" : "❌"} ${c[0]}`).join("\n") +
+        `\n\nVersion: ${ARTAPA.version}\nমোট generated rule (লাইন): ${ruleCount}\nUnknown classes: ${unknown.join(", ") || "নেই"}`;
+
+      debugEl.textContent = cssText;
+    }, 100);
+  });
+</script>
+
+</body>
+</html>

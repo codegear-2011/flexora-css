@@ -1,0 +1,24 @@
+{
+  "name": "artapa-css",
+  "version": "0.1.0-beta.1",
+  "description": "AI-optimized, zero-config, runtime CSS framework with namespace-based class syntax.",
+  "bin": {
+    "artapa": "./bin/artapa.js"
+  },
+  "main": "purge.js",
+  "files": [
+    "bin/",
+    "src/",
+    "dist/",
+    "purge.js",
+    "build.js",
+    "ai-rules.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "node build.js",
+    "purge": "node bin/artapa.js build"
+  },
+  "keywords": ["css", "css-framework", "utility-css", "ai", "runtime-css"],
+  "license": "MIT"
+}
